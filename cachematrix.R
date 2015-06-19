@@ -1,7 +1,19 @@
 ## Put comments here that give an overall description of what your
 ## functions do
 
-## makeCacheMatrix stores a matrix in memory
+## The purpose of the pair of functions `makeCacheMatrix` and `cacheSolve` is to
+## implement a caching solution for matrix inversion, which is generally a computationally
+## costly process.
+##
+## A "special" matrix object is initially created with a call to 'makeCacheMatrix'.
+## This object provides "public" get and set methods for reading or changing the stored
+## matrix, and "private" methods to allow the `cacheSolve` function to read or initialize
+## change the stored inverse --- it is not intended that the user call these "private"
+## methods directly, though that is not expressly prevented.
+##
+## The `cacheSolve` function is used to obtain the inverse of the stored matrix; whether
+## this is done by computation or by retrieval from the cache is abstracted from the user
+## of `cacheSolve`.
 
 
 ## Write a short comment describing this function
@@ -39,16 +51,15 @@ makeCacheMatrix <- function(x = matrix()) {
         ## in which case there would be no warning that a potentially incorrect
         ## inverse would be returned.
         
-        setInverse <- function(inverse = NULL) inv <<- inverse
-        
+        setInverse <- function(inverse = NULL)
+                inv <<- inverse
         
         getInverse <- function() inv
         
         ## Note: this list is returned.
         list(set = set, get = get,
              setInverse = setInverse,
-             getInverse = getInverse) 
-        
+             getInverse = getInverse)     
 }
 
 
